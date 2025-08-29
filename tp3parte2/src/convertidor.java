@@ -1,3 +1,7 @@
+
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,6 +19,10 @@ public class convertidor extends javax.swing.JFrame {
      */
     public convertidor() {
         initComponents();
+        ImageIcon iconoOriginal = new ImageIcon(getClass().getResource("/Icono/Imagen1.png"));
+        Image iconoimg = iconoOriginal.getImage().getScaledInstance(24, 24, java.awt.Image.SCALE_SMOOTH);
+        ImageIcon iconoEscalado = new ImageIcon(iconoimg);
+        btnConvertir.setIcon(iconoEscalado);
     }
 
     /**
@@ -48,7 +56,6 @@ public class convertidor extends javax.swing.JFrame {
             }
         });
 
-        btnConvertir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icono/Image20250828202729.png"))); // NOI18N
         btnConvertir.setText("Convertir");
         btnConvertir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

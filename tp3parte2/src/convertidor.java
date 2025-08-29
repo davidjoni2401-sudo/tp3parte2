@@ -1,6 +1,8 @@
 
 import java.awt.Image;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -19,10 +21,17 @@ public class convertidor extends javax.swing.JFrame {
      */
     public convertidor() {
         initComponents();
+        
+        //AGREGAMOS ICONO A ESCALA
         ImageIcon iconoOriginal = new ImageIcon(getClass().getResource("/Icono/Imagen1.png"));
         Image iconoimg = iconoOriginal.getImage().getScaledInstance(24, 24, java.awt.Image.SCALE_SMOOTH);
         ImageIcon iconoEscalado = new ImageIcon(iconoimg);
         btnConvertir.setIcon(iconoEscalado);
+        
+    
+        
+        
+        
     }
 
     /**
@@ -34,6 +43,7 @@ public class convertidor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnGrupo = new javax.swing.ButtonGroup();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -46,7 +56,9 @@ public class convertidor extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("CONVERSOR DE TEMPERATURA");
+        jLabel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.gray, null));
 
         jLabel2.setText("Ingrese la temperatura en grados");
 
@@ -63,8 +75,10 @@ public class convertidor extends javax.swing.JFrame {
             }
         });
 
+        btnGrupo.add(jrKelvin);
         jrKelvin.setText("Kelvin");
 
+        btnGrupo.add(jrCelsius);
         jrCelsius.setText("Celsius");
         jrCelsius.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,38 +86,40 @@ public class convertidor extends javax.swing.JFrame {
             }
         });
 
+        btnGrupo.add(jrFahrenheint);
         jrFahrenheint.setText("Fahrenheint");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 47, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(39, 39, 39))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(106, 106, 106)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(78, 78, 78)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jrKelvin)
-                            .addComponent(jLabel2)
-                            .addComponent(jrCelsius)
-                            .addComponent(jrFahrenheint)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addComponent(jtGrados, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(115, 115, 115)
-                        .addComponent(btnConvertir, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(81, Short.MAX_VALUE))
+                        .addComponent(btnConvertir, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jrFahrenheint)
+                            .addComponent(jtGrados, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jrKelvin)
+                            .addComponent(jrCelsius))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(28, 28, 28)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jtGrados, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -168,6 +184,31 @@ public class convertidor extends javax.swing.JFrame {
 
     private void btnConvertirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertirActionPerformed
         // TODO add your handling code here:
+        
+        
+        int valor = Integer.parseInt(jtGrados.getText());
+        
+        
+        if (jrCelsius.isSelected()){
+          int valorC=valor;
+          
+          
+          JOptionPane.showMessageDialog(null,"La Temperatura en Grados Celsius es: "+ valorC, "Resultado",
+                            JOptionPane.INFORMATION_MESSAGE);
+            
+        }else if(jrFahrenheint.isSelected()){
+            
+            int valorF= (valor* 5/9)+32;
+             JOptionPane.showMessageDialog(null,"La Temperatura en grados Fahrenheint es: "+ valorF, "Resultado",
+                            JOptionPane.INFORMATION_MESSAGE);
+            
+        }else if(jrKelvin.isSelected()){
+            int valorK= valor+273;
+            
+            
+             JOptionPane.showMessageDialog(null,"La Temperatura en grados Kelvin es: "+ valorK, "Resultado",
+                            JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnConvertirActionPerformed
 
     /**
@@ -207,6 +248,7 @@ public class convertidor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConvertir;
+    private javax.swing.ButtonGroup btnGrupo;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

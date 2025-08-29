@@ -184,9 +184,13 @@ public class convertidor extends javax.swing.JFrame {
 
     private void btnConvertirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertirActionPerformed
         // TODO add your handling code here:
+        int valor = 0;
         
-        
-        int valor = Integer.parseInt(jtGrados.getText());
+        // Try-Catch captura que se ingrese un número
+        try{valor = Integer.parseInt(jtGrados.getText());}catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Debe ingresar un número!", "Error de ingreso", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         
         
         if (jrCelsius.isSelected()){
